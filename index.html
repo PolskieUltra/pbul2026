@@ -193,7 +193,7 @@ tbody .col-lp,tbody .col-name,tbody .col-suma{background:var(--bg)}
 }
 
 /* ── THEAD ───────────────────────────────────────────────── */
-thead tr{background:var(--surf2);height:80px}
+thead tr{background:var(--surf2);height:100px}
 th{
   font-family:var(--ff-disp);font-weight:700;font-size:15px;
   letter-spacing:1.5px;text-transform:uppercase;
@@ -561,7 +561,7 @@ function renderHead() {
     <th class="col-suma ${sortKey==='suma'?'sorted':''}" onclick="setSort('suma')">SUMA${sortKey==='suma'?a():''}</th>`;
   rounds.forEach((r,i)=>{
     const act = sortKey===String(i);
-    h+=`<th class="rnd-h ${act?'sorted':''}" onclick="setSort('${i}')" style="min-width:90px;vertical-align:top;position:relative;padding-bottom:28px">
+    h+=`<th class="rnd-h ${act?'sorted':''}" onclick="setSort('${i}')" style="min-width:90px;vertical-align:top;position:relative;padding-bottom:36px">
       <span class="rnd-name">${r.n}</span>
       <span style="position:absolute;bottom:8px;left:0;right:0;text-align:center">
         <span class="rnd-date">${r.d}</span>
