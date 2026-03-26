@@ -82,8 +82,8 @@ header::after{
 
 .header-stats{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
 .hstat{text-align:center}
-.hstat-val{font-family:var(--ff-mono);font-size:22px;display:block;line-height:1}
-.hstat-lbl{font-size:16px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
+.hstat-val{font-family:var(--ff-mono);font-size:21px;display:block;line-height:1}
+.hstat-lbl{font-size:15px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.5px;margin-top:3px}
 
 .divider-v{width:1px;height:36px;background:var(--border2)}
 
@@ -195,7 +195,7 @@ tbody .col-lp,tbody .col-name,tbody .col-suma{background:var(--bg)}
 /* ── THEAD ───────────────────────────────────────────────── */
 thead tr{background:var(--surf2)}
 th{
-  font-family:var(--ff-disp);font-weight:700;font-size:11px;
+  font-family:var(--ff-disp);font-weight:700;font-size:13px;
   letter-spacing:1.5px;text-transform:uppercase;
   color:var(--text-dim);padding:8px 8px;
   text-align:center;border-bottom:2px solid var(--border);
@@ -238,14 +238,14 @@ td.col-name{
   text-align:left;padding-left:14px;
   font-family:var(--ff-disp);font-size:17px;font-weight:600;
 }
-td.col-name .fn{display:block;font-weight:400;font-size:10px;color:var(--text-muted);font-family:var(--ff-body);line-height:1.3;text-transform:uppercase;letter-spacing:.5px}
-td.col-name .ln{display:block;line-height:1.2;font-size:15px;font-weight:700}
+td.col-name .fn{display:block;font-weight:400;font-size:12px;color:var(--text-muted);font-family:var(--ff-body);line-height:1.3;text-transform:uppercase;letter-spacing:.5px}
+td.col-name .ln{display:block;line-height:1.2;font-size:17px;font-weight:700}
 td.col-name.w .ln{color:var(--women)}
 td.col-suma{font-size:17px;font-weight:500}
 
 td.rnd{min-width:66px;color:var(--text-muted)}
 td.rnd.has .pts{display:block;font-size:16px;color:var(--text)}
-td.rnd.has .yd{display:block;font-size:17px;color:var(--text-muted);margin-top:1px}
+td.rnd.has .yd{display:block;font-size:10px;color:var(--text-muted);margin-top:1px}
 td.rnd.no::after{content:'—';opacity:.25}
 
 /* ── DETAIL ROW ──────────────────────────────────────────── */
@@ -437,7 +437,6 @@ tbody tr{animation:fi .25s ease both}
   <div class="li"><div class="ld" style="background:var(--gold)"></div>Waga ×1</div>
   <div class="li"><div class="ld" style="background:var(--text-muted)"></div>Waga ×0.5</div>
   <div class="li" style="margin-left:auto;font-size:17px;color:var(--text-muted)">
-    Runda 1 z 14 · aktualizacja po każdej rundzie
   </div>
 </div>
 
@@ -561,11 +560,13 @@ function renderHead() {
     <th class="col-suma ${sortKey==='suma'?'sorted':''}" onclick="setSort('suma')">SUMA${sortKey==='suma'?a():''}</th>`;
   rounds.forEach((r,i)=>{
     const act = sortKey===String(i);
-    h+=`<th class="rnd-h ${act?'sorted':''}" onclick="setSort('${i}')" style="min-width:90px;vertical-align:top">
-      <span class="rnd-name">${r.n}</span>
-      <span class="rnd-date">${r.d}</span>
-      <span class="rnd-wt ${r.w<1?'half':''}">×${r.w}</span>
-      ${act?a():''}
+    h+=`<th class="rnd-h ${act?'sorted':''}" onclick="setSort('${i}')" style="min-width:90px;vertical-align:top;display:table-cell">
+      <div style="display:flex;flex-direction:column;height:100%;min-height:72px">
+        <span class="rnd-name" style="flex:1">${r.n}</span>
+        <span class="rnd-date">${r.d}</span>
+        <span class="rnd-wt ${r.w<1?'half':''}" style="margin-top:5px;display:inline-block">×${r.w}</span>
+        ${act?a():''}
+      </div>
     </th>`;
   });
   h+='</tr>';
@@ -744,7 +745,7 @@ function flagEmoji(code) {
     'SWE':'🇸🇪','NOR':'🇳🇴','FIN':'🇫🇮','DEN':'🇩🇰','NED':'🇳🇱',
     'BEL':'🇧🇪','AUT':'🇦🇹','SUI':'🇨🇭','ITA':'🇮🇹','ESP':'🇪🇸',
     'POR':'🇵🇹','IRL':'🇮🇪','AUS':'🇦🇺','NZL':'🇳🇿','CAN':'🇨🇦',
-    'BRA':'🇧🇷','ARG':'🇦🇷','JPN':'🇯🇵','KOR':'🇰🇷','RSA':'🇿🇦',
+    'BRA':'🇧🇷','ARG':'🇦🇷','JPN':'🇯🇵','JAP':'🇯🇵','KOR':'🇰🇷','RSA':'🇿🇦',
     'ISR':'🇮🇱','LUX':'🇱🇺','SVN':'🇸🇮','HRV':'🇭🇷','SRB':'🇷🇸',
   };
   return map[code.toUpperCase()] || code;
