@@ -198,6 +198,7 @@ th{
   font-family:var(--ff-disp);font-weight:700;font-size:15px;
   letter-spacing:1.5px;text-transform:uppercase;
   color:var(--text-dim);padding:8px 8px;
+  vertical-align:bottom;
   text-align:center;border-bottom:2px solid var(--border);
   white-space:nowrap;cursor:pointer;user-select:none;
   transition:color .15s;
@@ -205,11 +206,11 @@ th{
 th:hover{color:var(--text)}
 th.sorted{color:var(--red)}
 th.col-name{text-align:left;padding-left:14px}
-th .rnd-name{display:block;font-size:13px;font-weight:600;white-space:normal;word-break:break-word;margin:0 auto;line-height:1.3;letter-spacing:.5px}
-th .rnd-date{display:block;font-family:var(--ff-mono);font-size:9px;font-weight:400;color:var(--text-muted);margin-top:4px}
+th .rnd-name{display:block;font-size:13px;font-weight:600;white-space:normal;word-break:break-word;margin:0 auto 4px;line-height:1.3;letter-spacing:.5px}
+th .rnd-date{display:block;font-family:var(--ff-mono);font-size:9px;font-weight:400;color:var(--text-muted);margin-top:0;margin-bottom:3px}
 th .rnd-wt{
-  display:inline-block;font-family:var(--ff-mono);font-size:9px;
-  border:1px solid var(--border2);padding:1px 4px;margin-top:3px;
+  display:inline-block;font-family:var(--ff-mono);font-size:8px;
+  border:1px solid var(--border2);padding:0px 3px;margin-top:0;
   color:var(--gold);background:var(--bg);
 }
 th .rnd-wt.half{color:var(--text-dim)}
@@ -560,13 +561,11 @@ function renderHead() {
     <th class="col-suma ${sortKey==='suma'?'sorted':''}" onclick="setSort('suma')">SUMA${sortKey==='suma'?a():''}</th>`;
   rounds.forEach((r,i)=>{
     const act = sortKey===String(i);
-    h+=`<th class="rnd-h ${act?'sorted':''}" onclick="setSort('${i}')" style="min-width:90px;vertical-align:top;display:table-cell">
-      <div style="display:flex;flex-direction:column;height:100%;min-height:72px">
-        <span class="rnd-name" style="flex:1">${r.n}</span>
-        <span class="rnd-date">${r.d}</span>
-        <span class="rnd-wt ${r.w<1?'half':''}" style="margin-top:5px;display:inline-block">×${r.w}</span>
-        ${act?a():''}
-      </div>
+    h+=`<th class="rnd-h ${act?'sorted':''}" onclick="setSort('${i}')" style="min-width:90px;vertical-align:bottom">
+      <span class="rnd-name">${r.n}</span>
+      <span class="rnd-date">${r.d}</span>
+      <span class="rnd-wt ${r.w<1?'half':''}">×${r.w}</span>
+      ${act?a():''}
     </th>`;
   });
   h+='</tr>';
